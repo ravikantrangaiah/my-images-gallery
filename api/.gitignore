@@ -1,7 +1,7 @@
 # dependencies
-/.venv
+.venv
 .venv/bin
-.venv/lib
+.venv/lib/python3.8/site-packages
 
 # misc
 .DS_Store
