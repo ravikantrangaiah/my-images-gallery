@@ -8,6 +8,9 @@ flask = "==1.1.2"
 requests = "*"
 python-dotenv = "*"
 flask-cors = "*"
+black = "*"
+pylint = "*"
+pycodestyle = "*"
 
 [dev-packages]
 

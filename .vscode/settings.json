@@ -8,5 +8,18 @@
   "editor.codeActionsOnSave": {
       "source.fixAll.eslint":true
   },
-  "python.pythonPath": "api/.venv/bin/python3"
+  "python.defaultInterpreterPath": "api/.venv/bin/python3",
+  "python.venvFolders": "api/.venv",
+  "python.linting.pycodestyleEnabled": true,
+  "python.linting.pycodestyleArgs": [
+      "--max-line-length=88"
+  ],
+  "python.linting.pylintEnabled": true,
+  "python.linting.lintOnSave": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "api/.venv/bin/black",
+  "[python]": {
+      "editor.formatOnSave":true,
+      "editor.formatOnSaveMode": "file"
+  }
 }
