@@ -23,7 +23,7 @@ app.config["DEBUG"] = DEBUG
 
 @app.route("/new-image")
 def new_image():
-    """function to fetch images from unsplash.com based on query string input received"""
+    """function to fetch images from unsplash.com based on query string input entered"""
     word = request.args.get("query")
 
     headers = {"Accept-Version": "v1", "Authorization": "Client-ID " + UNSPLASH_KEY}
