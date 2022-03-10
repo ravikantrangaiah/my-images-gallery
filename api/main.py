@@ -20,8 +20,8 @@ CORS(app)
 
 app.config["DEBUG"] = DEBUG
 
-
 @app.route("/new-image")
+
 def new_image():
     """function to fetch images from unsplash.com based on query string input entered"""
     word = request.args.get("query")
