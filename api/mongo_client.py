@@ -22,5 +22,5 @@ def insert_test_document():
     """function to insert a dummy record in a dummy collection of the mongo database"""
     db = mongo_client.test
     test_collection = db.test_collection
-    res = test_collection.insert_one({"name":"Ravi", "Student": True})
+    res = test_collection.insert_one({"name": "Ravi", "Student": True})
     print(res)

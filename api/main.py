@@ -1,9 +1,13 @@
 """main program which implements API to fetch images from unsplash.com"""
 import os
 import requests
-from flask import Flask, request
+from flask import Flask, json, request, jsonify
 from dotenv import load_dotenv
 from flask_cors import CORS
+from mongo_client import mongo_client
+
+gallery = mongo_client.gallery
+images_collection = gallery.images
 
 load_dotenv(dotenv_path="./.env.local")
 
@@ -20,8 +24,8 @@ CORS(app)
 
 app.config["DEBUG"] = DEBUG
 
-@app.route("/new-image")
 
+@app.route("/new-image")
 def new_image():
     """function to fetch images from unsplash.com based on query string input entered"""
     word = request.args.get("query")
@@ -31,6 +35,22 @@ def new_image():
     response = requests.get(url=UNSPLASH_URL, headers=headers, params=params)
     data = response.json()
     return data
+
+
+@app.route("/images", methods=["GET", "POST"])
+def images():
+    """ this API end point is to fetch all images from the database or insert one in it"""
+    if request.method == "GET":
+        # get all images from the database
+        images_list = images_collection.find({})
+        return jsonify([img for img in images_list])
+    if request.method == "POST":
+        # save image in the database
+        image = request.get_json()
+        image["_id"] = image.get("id")
+        result = images_collection.insert_one(image)
+        inserted_id = result.inserted_id
+        return {"inserted_id": inserted_id}
 
 
 if __name__ == "__main__":
